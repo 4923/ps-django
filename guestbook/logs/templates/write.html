@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block contents %}
+
+    <!-- form tag 사용 -->
+    <!-- action: submit을 눌렀을 때 어떤 일이 일어날 것인가 -->
+    <form  class="row g-3" action="{% url 'create' %}" method="POST">
+        <!-- csrf_token : 보안 -->
+        {% csrf_token %}
+
+        <!-- 작성 폼 -->
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">@</span>
+            <input type="text" name="name" class="form-control" placeholder="Username" >
+        </div>
+        <div class="form-floating">
+            <textarea name="contents" class="form-control" id="floatingTextarea2" style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Comments</label>
+        </div>
+        <button type="submit" class="btn btn-dark">작성</button>
+    </form>
+
+{% endblock contents %}
