@@ -17,7 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-# 이후 생성할 views를 불러오기 위해 import 먼저 진행
 from logs import views
 
 app_name = "logs"

@@ -21,22 +21,26 @@ Delete: 방명록 삭제
 """
 
 
+# 메인페이지
 def read_logs(request):
     read_logs = Log.objects.all().order_by("datetime").reverse()
     logs = {"logs": read_logs}
     return render(request, "index.html", logs)
 
 
+# 상세페이지
 def read_log(request, pk):
     read_log = Log.objects.get(id=pk)
     log = {"log": read_log}
     return render(request, "details.html", log)
 
 
+# 작성
 def write(request):
     return render(request, "write.html")
 
 
+# 등록
 def create(request):
     """
     # guestbook/logs/models.py
@@ -58,6 +62,7 @@ def create(request):
     return redirect("read_log", pk=new_log.pk)
 
 
+# 수정
 def edit(request, pk):
     """write(create)와 유사, 기존 데이터를 불러와 update 함수로 덮어씌운다."""
     read_log = Log.objects.get(id=pk)  # 원래 저장된 데이터를 불러온다
@@ -65,6 +70,7 @@ def edit(request, pk):
     return render(request, "edit.html", log)
 
 
+# 갱신
 def update(request, pk):
     # 올바르지 않은 고유번호 primary key 일 경우 404 에러 반환
     log = get_object_or_404(Log, pk=pk)
@@ -80,6 +86,7 @@ def update(request, pk):
     return redirect("read_log", pk=pk)
 
 
+# 삭제
 def delete(request, pk):
     log = Log.objects.get(id=pk)
     log.delete()
